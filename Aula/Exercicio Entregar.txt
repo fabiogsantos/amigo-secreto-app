@@ -1,0 +1,8 @@
+Pessoal... O exercício para entregar no próximo Sábado:
+1. Na página de detalhes do evento mostrar um mapa estático usando a API do Google Maps https://developers.google.com/maps/documentation/static-maps/
+2. Temos diversos dados sobre o evento vindo do Firebase, inclua todos os dados na página de detalhes
+3. Precisaremos da listagem de usuários, crie uma listagem estática usando o componente “Avatar List”
+4. Você já criou a página “EventCreate”, agora crie um formulário com todos os campos necessários usando o componente Input do Ionic. https://ionicframework.com/docs/components/#inputs
+5. Na parte de data e hora utilize o component DateTime https://ionicframework.com/docs/components/#inputs
+6. Acima da listagem de participantes coloque um botão chamado “Realizar sorteio”
+7. [Bônus] Ao invés de autenticar com Facebook, usar o login com Google????

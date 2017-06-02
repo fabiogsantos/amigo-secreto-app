@@ -1,0 +1,20 @@
+Boa noite pessoal... Segue a lista de dependências para as próximas aulas:
+
+Git
+Node.js + NPM (Quando você instala o Nodejs, o NPM já vem de boas)
+Angular CLI $ npm install -g @angular/cli
+Ionic CLI $ npm install -g ionic@latest
+Cordova $ npm install -g cordova
+Java Development Kit (JDK) versão 7 ou superior
+Android Studio
+Android SDK
+Firebase CLI $ npm install -g firebase-tools
+
+
+Para configurar o ambiente Android na máquina é preciso seguir alguns passos:
+Windows https://www.youtube.com/watch?v=Lio23jkqjWU
+Mac https://www.youtube.com/watch?v=d2WfwPshN5s&t=2s
+
+Juarez só com o SDK do Android não seria suficiente para instalar no celular? Apesar que na aula de Android nativo você vai precisar do Android Studio Fábio.
+
+@Eric é possível instalar só com o SDK através do adb, porém para rodar o emulador é necessário o Android Studio ou o Genymotion https://www.genymotion.com/

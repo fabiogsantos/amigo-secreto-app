@@ -1,0 +1,156 @@
+// Cria um projeto 
+$ionic start amigo-secreto-app blank
+
+// Executa o projeto
+$ionic serve --address 192.168.x.xall
+
+// Visualizar o projeto executando em varios sistemas lado a lado 
+$ionic serve --lab
+
+// Configurar a variagel de ambiente "SET CODE=%path_app_vscode%"
+// no temirminal executar o comando "code" <projeto>
+
+// Empresa que construiu o IONIC driftyco consultar historicos de // melhorias no github driftyco / IONIC.
+
+// Para conhecer mais o cordova consultar cordova.apache.org
+
+// Ionic.config.json responsavel por configurar o Ionic Cloud
+
+// Comando para criar conta no Ionic ou logar na conta
+$ionic login
+// Ou acessar o apps.ionic.io/signup
+
+// Comando para gerar um novo app_id, trata-se de uma chave para acessar o Ionic Cloud.
+$ionic io init (versão antiga)
+$ionic link (versão atual)
+
+// Para subir o projeto local para o servidor do Ionic View 
+$ionic upload
+
+
+// Para ver o projeto rodando no celular android ou IOS
+// Instalar o IONIC View o celular
+// Usar a app_id no Ionic View para rodar o projeto do Ionic Cloud
+// Obs: O Ionic View não consegue rodar todos os plugins do cordova.
+
+// Alterar o ID configurar a identificação do aplicação no projeto
+$widget id="br.com.meusite.meuapp" vesion="1.0.1"
+
+
+// Comando para adicionar a plataforma no projeto
+$ionic cordova plataform add android|ios|windows
+// Adicionando a plataforma a pasta passa a ter a pasta "platform"
+
+// Obs: O IONIC puro é voltado para WEB, para usar com foco em app deve usar o Cordova.
+
+// Na platform.json é configurado a plataforma e a versão
+
+// Comando para rodar o projeto na plataforma
+$ionic cordova run android|ios|windows -lc
+// O -lc é para que a alteração do codigo seja recompilado automaticamente para refletir na emulação.
+
+// Criar o icon.png para o projeto Ionic com 1024x1024 e 
+// splash.png com  2208x2208 e colocar no resources do projeto e executar o comando
+$ionic cordova resources.
+// Obs: Se não for nesta resolução não funcionará.
+// Obs: Para gerar icon para diferente plataformas deve substituir o nome do arquivo e execuar o comando.
+
+
+// Abrir o arquivo src/app/app.module.ts responsavel por importar todas as dependencias dos arquivos.
+// Abrir o arquivo src/app/app.component.ts responsavel pela execução do aplicativo.
+
+
+// Comando para Criar a pagina de login
+$ionic generate page login
+
+// Obs: O Ionic a patir da versao 3 passou a usar o conceito de Lazy Loading
+// que consite em carregar as paginas por demanda para melhor peformance.
+
+// Obs: Com o Lazy Loading não precisa usar o import do LoginPage em src/app/app.module.ts ou src/app/app.component.ts, basta 
+// abrir o src/app/app.component.ts e em importar rootpage: any = "HomePage" laterar para rootpage: any = 'LoginPage'. 
+// Isto apenas para versão 3 em diante, a versão 2 ou inferior continuar precisando usar o import.
+// Na versão 3 o ionic busca pelo ionic decorat em LoginPage.ts e faz o import dinamicamente.
+
+
+// Criar EventListPage, EventDetailPage, EventCreatePage e o provider AuthService.
+#ionic generate page event-create
+#ionic generate page event-detail
+#ionic generate page event-list
+#ionic generate provider auth-service
+
+// Para instalar o firebase e biblioteca do suporte angula a firebase
+$npm install angularfire2 firebase -save
+
+// Obs: Link oficial do modulo AngulaFire2 https://github.com/angular/angularfire2
+//      Tutarial: https://github.com/angular/angularfire2/blob/master/docs/Auth-with-Ionic3-Angular4.md
+
+// No src/app/app.module.ts importar o modulo do angular para firebase.
+import {AngularFireModule} from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+// Criar o projeto no site do Firebase e em src/app/app.module.ts grava a constante "firebaseConfig" com as informações do faribase
+export const firebaseConfig = {
+  apiKey: "AIzaSyCpGM7VQ6g6WuGvpukqQlIkd9Q12sD2kPU",
+  authDomain: "secret-santa-1481683764948.firebaseapp.com",
+  databaseURL: "https://secret-santa-1481683764948.firebaseio.com",
+  storageBucket: "secret-santa-1481683764948.appspot.com",
+  messagingSenderId: "56975771687"
+};
+
+// Ainda em src/app/app.module.ts no modulo principal da aplicação @NgModule incluir os imports:
+AngularFireModule.initializeApp(firebaseConfig),
+AngularFireDatabaseModule
+
+- Em event-list.ts incluir os imports
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+
+// Em event-list.ts adicionar a variavel e o parametro no construtor
+events: FirebaseListObservable<any>;
+// parametro construtor 
+public af: AngularFireDatabase,
+// Colocar '/events' no database.list
+this.events = this.af.database.list('/events');
+
+// Aterar o app.component.ts para apontar para o event-list
+
+// Em event-list.html colocar a tag content para chamada do event list com for de forma assincrona
+
+<ion-content padding>
+	<ion-list>
+		<ion-item class="text" *ngFor="let item of items | async">
+			{{item.title}}
+		</ion-item>
+	</ion-list>
+</ion-content>
+
+
+// Criar conta do projeto no facebook, acessar https://developers.facebook.com/
+
+// Associar a autenticação do FireBase ao ID do facebook
+App ID 1877049869176761
+App Secret *****
+
+// Copiar a URL do OAuth do FireBase e colar no facebook em adicionar novo produto.
+https://amigosecretoapp-5d2cc.firebaseapp.com/__/auth/handler
+
+// Em Login.ts em component adicionar o providers:
+providers:[AngularFireAuth]
+
+// Em login.ts incluir importação para permitir uso do facebook no Angula:
+import {AngulaFireAuth} from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+// parametro no Constructor
+private afAuth: AngularFireAuth
+// Adicionar uma ação que irá esperar o login:
+ signInWithFacebook() {
+    this.afAuth.auth
+      .signInWithPopup(new firebase.auth.FacebookAuthProvider())
+      .then(res => console.log(res));
+  }
+
+// Obs: A exceção pode ser tratada com cath
+.catch(err => alert('Login não foi realizado!'));
+  
+// Dica: Instalar plugin Angola para vscode, pesquisar por: "vscode plugin angola jhon papa"
+
+// Adicionar DisplayName no login.html
